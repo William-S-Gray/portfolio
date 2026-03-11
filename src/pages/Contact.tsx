@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Send, MapPin, Mail, Github, Linkedin } from "lucide-react";
 import { z } from "zod";
+import emailjs from "@emailjs/browser";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -14,18 +15,29 @@ type FormData = z.infer<typeof contactSchema>;
 type Errors = Partial<Record<keyof FormData, string>>;
 
 const Contact = () => {
-  const [form, setForm] = useState<FormData>({ name: "", email: "", subject: "", message: "" });
+  const [form, setForm] = useState<FormData>({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     setErrors({ ...errors, [e.target.name]: undefined });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     const result = contactSchema.safeParse(form);
+
     if (!result.success) {
       const fieldErrors: Errors = {};
       result.error.issues.forEach((i) => {
@@ -35,7 +47,50 @@ const Contact = () => {
       setErrors(fieldErrors);
       return;
     }
-    setSubmitted(true);
+
+    try {
+      setLoading(true);
+
+      /* Email #1 → sent to YOU */
+      await emailjs.send(
+        "service_os2g7yx",
+        "template_f2gatm5",
+        {
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        },
+        "v3g-7vFdAFIegC_Hz"
+      );
+
+      /* Email #2 → auto reply to visitor */
+      await emailjs.send(
+        "service_os2g7yx",
+        "template_h1zyno9",
+        {
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+        },
+        "v3g-7vFdAFIegC_Hz"
+      );
+
+      setSubmitted(true);
+
+      setForm({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+
+    } catch (error) {
+      console.error("Email failed:", error);
+      alert("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -45,108 +100,135 @@ const Contact = () => {
           className="text-center mb-14"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
         >
           <h1 className="text-4xl sm:text-5xl font-extrabold mb-4">
             Get In <span className="text-gradient">Touch</span>
           </h1>
+
           <p className="text-muted-foreground max-w-xl mx-auto">
-            Have a project in mind or want to collaborate? Drop me a message and I'll get back to you shortly.
+            Have a project in mind or want to collaborate? Drop me a message and
+            I'll get back to you shortly.
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-5 gap-8">
-          {/* Info */}
-          <motion.div
-            className="md:col-span-2 space-y-4"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
+
+          {/* Contact Info */}
+          <motion.div className="md:col-span-2 space-y-4">
             <div className="clay p-5 flex items-start gap-3">
               <Mail size={18} className="text-primary mt-0.5" />
               <div>
                 <p className="font-semibold text-sm">Email</p>
-                <p className="text-sm text-muted-foreground">william@example.com</p>
+                <p className="text-sm text-muted-foreground">
+                  graywilliamwiltino@gmail.com
+                </p>
               </div>
             </div>
+
             <div className="clay p-5 flex items-start gap-3">
               <MapPin size={18} className="text-primary mt-0.5" />
               <div>
                 <p className="font-semibold text-sm">Location</p>
-                <p className="text-sm text-muted-foreground">Available Worldwide</p>
+                <p className="text-sm text-muted-foreground">
+                  Available Worldwide
+                </p>
               </div>
             </div>
+
             <div className="clay p-5 flex items-center gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="GitHub">
+              <a
+                href="https://github.com/William-W-Gray"
+                className="hover:text-primary"
+              >
                 <Github size={20} />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" aria-label="LinkedIn">
+
+              <a
+                href="https://www.linkedin.com/in/william-wiltino-gray-577254253/"
+                className="hover:text-primary"
+              >
                 <Linkedin size={20} />
               </a>
             </div>
           </motion.div>
 
           {/* Form */}
-          <motion.div
-            className="md:col-span-3"
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
+          <motion.div className="md:col-span-3">
             {submitted ? (
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                className="clay p-10 text-center"
-              >
+              <div className="clay p-10 text-center">
                 <div className="w-14 h-14 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
                   <Send size={24} className="text-primary" />
                 </div>
+
                 <h3 className="text-xl font-bold mb-2">Message Sent!</h3>
-                <p className="text-sm text-muted-foreground">Thank you for reaching out. I'll respond within 24 hours.</p>
-              </motion.div>
+
+                <p className="text-sm text-muted-foreground">
+                  Thank you for reaching out. I'll respond within 24 hours.
+                </p>
+              </div>
             ) : (
-              <form onSubmit={handleSubmit} className="clay p-7 space-y-5" noValidate>
-                {(["name", "email", "subject"] as const).map((field) => (
-                  <div key={field}>
-                    <label htmlFor={field} className="block text-sm font-medium mb-1.5 capitalize">
-                      {field}
-                    </label>
-                    <input
-                      id={field}
-                      name={field}
-                      type={field === "email" ? "email" : "text"}
-                      value={form[field]}
-                      onChange={handleChange}
-                      className="w-full clay-inset px-4 py-3 text-sm bg-transparent outline-none focus:ring-2 focus:ring-primary/30 rounded-clay transition-shadow"
-                    />
-                    {errors[field] && <p className="text-xs text-destructive mt-1">{errors[field]}</p>}
-                  </div>
-                ))}
-                <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-1.5">
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows={5}
-                    value={form.message}
-                    onChange={handleChange}
-                    className="w-full clay-inset px-4 py-3 text-sm bg-transparent outline-none focus:ring-2 focus:ring-primary/30 rounded-clay transition-shadow resize-none"
-                  />
-                  {errors.message && <p className="text-xs text-destructive mt-1">{errors.message}</p>}
-                </div>
+              <form
+                onSubmit={handleSubmit}
+                className="clay p-7 space-y-5"
+                noValidate
+              >
+                <input
+                  name="name"
+                  placeholder="Your Name"
+                  value={form.name}
+                  onChange={handleChange}
+                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                />
+                {errors.name && (
+                  <p className="text-xs text-red-500">{errors.name}</p>
+                )}
+
+                <input
+                  name="email"
+                  placeholder="Your Email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                />
+                {errors.email && (
+                  <p className="text-xs text-red-500">{errors.email}</p>
+                )}
+
+                <input
+                  name="subject"
+                  placeholder="Subject"
+                  value={form.subject}
+                  onChange={handleChange}
+                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                />
+                {errors.subject && (
+                  <p className="text-xs text-red-500">{errors.subject}</p>
+                )}
+
+                <textarea
+                  name="message"
+                  rows={5}
+                  placeholder="Your Message"
+                  value={form.message}
+                  onChange={handleChange}
+                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                />
+                {errors.message && (
+                  <p className="text-xs text-red-500">{errors.message}</p>
+                )}
+
                 <button
                   type="submit"
-                  className="w-full py-3 rounded-clay bg-primary text-primary-foreground font-semibold text-sm clay-hover transition-all inline-flex items-center justify-center gap-2"
+                  disabled={loading}
+                  className="w-full py-3 rounded-clay bg-primary text-white font-semibold flex items-center justify-center gap-2"
                 >
-                  <Send size={16} /> Send Message
+                  <Send size={16} />
+                  {loading ? "Sending..." : "Send Message"}
                 </button>
               </form>
             )}
           </motion.div>
+
         </div>
       </div>
     </section>
@@ -154,3 +236,10 @@ const Contact = () => {
 };
 
 export default Contact;
+
+
+
+
+
+
+

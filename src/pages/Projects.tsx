@@ -23,7 +23,7 @@ const Projects = () => {
             My <span className="text-gradient">Projects</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A selection of projects showcasing my skills in web development, AI, and backend engineering.
+            A selection of projects showcasing my skills in software development, AI, and backend engineering.
           </p>
         </motion.div>
 
@@ -96,7 +96,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
           >
-            <Github size={15} /> Code
+            <Github size={15} /> Details
           </a>
         )}
         {project.liveUrl && (

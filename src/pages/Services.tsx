@@ -21,7 +21,7 @@ const services = [
   {
     icon: Database,
     title: "Database Design",
-    description: "Efficient database schemas and optimization with PostgreSQL, MongoDB, and Redis.",
+    description: "Efficient database schemas and optimization with PostgreSQL, Mysql, MongoDB, and Redis.",
   },
   {
     icon: Cloud,
@@ -30,8 +30,8 @@ const services = [
   },
   {
     icon: Code2,
-    title: "Code Reviews & Mentoring",
-    description: "Clean code practices, architecture review, and one-on-one mentoring sessions.",
+    title: "Mobile & Web Application",
+    description: "Cross-platform mobile and web applications built with modern frameworks.",
   },
 ];
 

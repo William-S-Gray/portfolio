@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import profileImg from "@/assets/profile-placeholder.jpg";
 
 const socials = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Github, href: "https://github.com/William-W-Gray", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/william-wiltino-gray-577254253/", label: "LinkedIn" },
+  { icon: Facebook, href: "https://www.facebook.com/wiltino.gray/", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/williamwiltinogray/", label: "Instagram" },
 ];
 
 const Index = () => (
@@ -28,7 +28,7 @@ const Index = () => (
             Hi, I'm <span className="text-gradient">William</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-2 font-medium">
-            Computer Science Student · Software Engineer · AI Enthusiast
+              Software Developer · AI Enthusiast · Devops Engineer
           </p>
           <p className="text-muted-foreground max-w-lg mx-auto lg:mx-0 mb-8">
             I craft modern web experiences, build scalable backend systems, and explore the frontiers of artificial intelligence.
@@ -81,8 +81,8 @@ const Index = () => (
         >
           <div className="clay-lg p-3 animate-float">
             <img
-              src={profileImg}
-              alt="William — Computer Science Student"
+              src="/Will.png"
+              alt="This is — image of William Gray"
               className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 object-cover rounded-clay-lg"
               loading="eager"
             />

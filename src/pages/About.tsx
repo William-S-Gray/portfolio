@@ -38,7 +38,7 @@ const About = () => (
           About <span className="text-gradient">Me</span>
         </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
-          I'm a Computer Science student passionate about building impactful software. I love transforming ideas into elegant, performant web applications and exploring the potential of AI.
+          I'm a Software developer passionate about building impactful software. I love transforming ideas into elegant, performant web applications and exploring the potential of AI.
         </p>
       </motion.div>
 

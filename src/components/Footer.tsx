@@ -1,17 +1,19 @@
 import { Github, Linkedin, Facebook, Instagram } from "lucide-react";
 
 const socials = [
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
+  { icon: Github, href: "https://github.com/William-W-Gray", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/william-wiltino-gray-577254253/", label: "LinkedIn" },
+  { icon: Facebook, href: "https://www.facebook.com/william.wiltino.gray", label: "Facebook" },
+  { icon: Instagram, href: "https://www.instagram.com/william.wiltino.gray", label: "Instagram" },
 ];
 
 const Footer = () => (
   <footer className="py-12 px-4">
     <div className="container mx-auto max-w-6xl">
       <div className="clay p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <p className="font-heading text-lg font-bold text-gradient">William.</p>
+        <a href="#" className="font-heading text-lg font-bold text-gradient">
+          William.
+        </a>
         <div className="flex items-center gap-4">
           {socials.map((s) => (
             <a
