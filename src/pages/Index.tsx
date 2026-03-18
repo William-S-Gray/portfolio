@@ -28,7 +28,7 @@ const Index = () => (
             Hi, I'm <span className="text-gradient">William</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-2 font-medium">
-              Software Developer · AI Enthusiast · Devops Engineer
+            Software Developer · AI Enthusiast · Devops Engineer
           </p>
           <p className="text-muted-foreground max-w-lg mx-auto lg:mx-0 mb-8">
             I craft modern web experiences, build scalable backend systems, and explore the frontiers of artificial intelligence.
@@ -51,8 +51,6 @@ const Index = () => (
               href="#"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-clay clay-sm clay-hover text-sm font-semibold text-muted-foreground transition-all"
             >
-              <Download size={16} />
-              Download CV
             </a>
           </div>
 

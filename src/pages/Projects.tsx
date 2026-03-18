@@ -1,14 +1,69 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ExternalLink, Github } from "lucide-react";
+import {
+  ExternalLink,
+  Github,
+  Stethoscope,
+  LayoutDashboard,
+  ShoppingBag,
+  Music,
+  Bot,
+  ShoppingCart,
+  ShieldCheck,
+  Grid2X2,
+} from "lucide-react";
 import { projects, type Project } from "@/data/projects";
 
-const categories = ["all", "web", "ai", "backend", "research"] as const;
+const categories = [
+  "all",
+  "healthcare",
+  "management",
+  "marketplace",
+  "entertainment",
+  "ai",
+  "retail",
+  "security",
+] as const;
+
+type Category = (typeof categories)[number];
+
+const categoryIcons: Record<Category, React.ReactNode> = {
+  all: <Grid2X2 size={14} />,
+  healthcare: <Stethoscope size={14} />,
+  management: <LayoutDashboard size={14} />,
+  marketplace: <ShoppingBag size={14} />,
+  entertainment: <Music size={14} />,
+  ai: <Bot size={14} />,
+  retail: <ShoppingCart size={14} />,
+  security: <ShieldCheck size={14} />,
+};
+
+// Larger icons for project card badges
+const categoryCardIcons: Record<string, React.ReactNode> = {
+  healthcare: <Stethoscope size={22} />,
+  management: <LayoutDashboard size={22} />,
+  marketplace: <ShoppingBag size={22} />,
+  entertainment: <Music size={22} />,
+  ai: <Bot size={22} />,
+  retail: <ShoppingCart size={22} />,
+  security: <ShieldCheck size={22} />,
+};
+
+const categoryColors: Record<string, string> = {
+  healthcare: "from-emerald-500 to-teal-600",
+  management: "from-blue-500 to-indigo-600",
+  marketplace: "from-orange-400 to-amber-500",
+  entertainment: "from-purple-500 to-pink-500",
+  ai: "from-cyan-500 to-sky-600",
+  retail: "from-green-500 to-emerald-600",
+  security: "from-orange-500 to-red-600",
+};
 
 const Projects = () => {
   const [filter, setFilter] = useState<string>("all");
 
-  const filtered = filter === "all" ? projects : projects.filter((p) => p.category === filter);
+  const filtered =
+    filter === "all" ? projects : projects.filter((p) => p.category === filter);
 
   return (
     <section className="px-4 py-16">
@@ -23,7 +78,8 @@ const Projects = () => {
             My <span className="text-gradient">Projects</span>
           </h1>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            A selection of projects showcasing my skills in software development, AI, and backend engineering.
+            A selection of projects showcasing my skills in software
+            development, AI, and backend engineering.
           </p>
         </motion.div>
 
@@ -33,12 +89,13 @@ const Projects = () => {
             <button
               key={c}
               onClick={() => setFilter(c)}
-              className={`px-5 py-2 rounded-clay text-sm font-medium capitalize transition-all ${
+              className={`inline-flex items-center gap-1.5 px-5 py-2 rounded-clay text-sm font-medium capitalize transition-all ${
                 filter === c
                   ? "bg-primary text-primary-foreground"
                   : "clay-sm text-muted-foreground hover:text-foreground"
               }`}
             >
+              {categoryIcons[c]}
               {c}
             </button>
           ))}
@@ -57,61 +114,79 @@ const Projects = () => {
   );
 };
 
-const ProjectCard = ({ project }: { project: Project }) => (
-  <motion.div
-    layout
-    initial={{ opacity: 0, scale: 0.95 }}
-    animate={{ opacity: 1, scale: 1 }}
-    exit={{ opacity: 0, scale: 0.95 }}
-    transition={{ duration: 0.35 }}
-    className="clay overflow-hidden clay-hover group"
-  >
-    <div className="relative overflow-hidden">
-      <img
-        src={project.image}
-        alt={project.title}
-        className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
-    </div>
-    <div className="p-6">
-      <h3 className="font-bold text-lg mb-2">{project.title}</h3>
-      <p className="text-sm text-muted-foreground mb-4">{project.description}</p>
-      <div className="flex flex-wrap gap-1.5 mb-5">
-        {project.techStack.map((t) => (
-          <span
-            key={t}
-            className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary font-medium"
+const ProjectCard = ({ project }: { project: Project }) => {
+  const iconColorClass =
+    categoryColors[project.category] ?? "from-primary to-primary/60";
+  const cardIcon = categoryCardIcons[project.category];
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.95 }}
+      transition={{ duration: 0.35 }}
+      className="clay overflow-hidden clay-hover group"
+    >
+      <div className="relative overflow-hidden">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
+        {/* Category icon badge */}
+        {cardIcon && (
+          <div
+            className={`absolute top-3 right-3 bg-gradient-to-br ${iconColorClass} text-white p-2 rounded-xl shadow-lg backdrop-blur-sm`}
           >
-            {t}
-          </span>
-        ))}
-      </div>
-      <div className="flex items-center gap-3">
-        {project.githubUrl && (
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-          >
-            <Github size={15} /> Details
-          </a>
-        )}
-        {project.liveUrl && (
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
-          >
-            <ExternalLink size={15} /> Live Demo
-          </a>
+            {cardIcon}
+          </div>
         )}
       </div>
-    </div>
-  </motion.div>
-);
+      <div className="p-6">
+        <div className="flex items-start gap-3 mb-2">
+          <h3 className="font-bold text-lg leading-tight">{project.title}</h3>
+        </div>
+        <p className="text-sm text-muted-foreground mb-4">
+          {project.description}
+        </p>
+        <div className="flex flex-wrap gap-1.5 mb-5">
+          {project.techStack.map((t) => (
+            <span
+              key={t}
+              className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary font-medium"
+            >
+              {t}
+            </span>
+          ))}
+        </div>
+        <div className="flex items-center gap-3">
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Github size={15} /> Details
+            </a>
+          )}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+            >
+              <ExternalLink size={15} /> Live Demo
+            </a>
+          )}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
 
 export default Projects;
