@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Facebook, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
 import Seo from "@/components/Seo";
+import ImpactStats from "@/components/ImpactStats";
 
 const socials = [
   { icon: Github, href: "https://github.com/William-S-Gray", label: "GitHub" },
@@ -11,8 +12,9 @@ const socials = [
 ];
 
 const Index = () => (
-  <section className="px-4 min-h-[calc(100vh-6rem)] flex items-center">
-    <Seo
+  <>
+    <section className="px-4 min-h-[calc(100vh-6rem)] flex items-center">
+      <Seo
       title="William S. Gray | Software Engineer & AI Full-Stack Systems Builder"
       description="Software engineer William S. Gray builds scalable full-stack, AI-powered, and cloud-native systems — from clinical decision tools to school management platforms."
       path="/"
@@ -108,7 +110,9 @@ const Index = () => (
         <ArrowDown size={20} className="text-muted-foreground" />
       </motion.div>
     </div>
-  </section>
+    </section>
+    <ImpactStats />
+  </>
 );
 
 export default Index;
