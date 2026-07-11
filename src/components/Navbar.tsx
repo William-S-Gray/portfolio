@@ -10,6 +10,7 @@ const links = [
   { to: "/services", label: "Services" },
   { to: "/projects", label: "Projects" },
   { to: "/certificates", label: "Certificates" },
+  { to: "/blog", label: "Blog" },
   { to: "/contact", label: "Contact" },
 ];
 
@@ -26,7 +27,7 @@ const Navbar = () => {
           </Link>
 
           {/* Desktop */}
-          <ul className="hidden md:flex items-center gap-1">
+          <ul className="hidden lg:flex items-center gap-1">
             {links.map((l) => (
               <li key={l.to}>
                 <Link
@@ -50,7 +51,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <div className="hidden md:flex items-center gap-2">
+          <div className="hidden lg:flex items-center gap-2">
             <ThemeToggle />
             <Link
               to="/contact"
@@ -61,7 +62,7 @@ const Navbar = () => {
           </div>
 
           {/* Mobile controls */}
-          <div className="flex items-center gap-1 md:hidden">
+          <div className="flex items-center gap-1 lg:hidden">
             <ThemeToggle />
             <button
               onClick={() => setOpen(!open)}
@@ -80,7 +81,7 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
-              className="clay mt-2 p-4 md:hidden"
+              className="clay mt-2 p-4 lg:hidden"
             >
               <ul className="flex flex-col gap-1">
                 {links.map((l) => (

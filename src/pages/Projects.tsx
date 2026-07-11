@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
-  Github,
+  ArrowRight,
   Stethoscope,
   LayoutDashboard,
   ShoppingBag,
@@ -195,7 +196,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
       <div className="p-6">
         <div className="flex items-start gap-3 mb-2">
-          <h3 className="font-bold text-lg leading-tight">{project.title}</h3>
+          <h3 className="font-bold text-lg leading-tight">
+            <Link to={`/projects/${project.id}`} className="hover:text-primary transition-colors">
+              {project.title}
+            </Link>
+          </h3>
         </div>
         <p className="text-sm text-muted-foreground mb-4">
           {project.description}
@@ -210,25 +215,21 @@ const ProjectCard = ({ project }: { project: Project }) => {
             </span>
           ))}
         </div>
-        <div className="flex items-center gap-3">
-          {project.githubUrl && (
-            <a
-              href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Github size={15} /> Details
-            </a>
-          )}
+        <div className="flex items-center gap-4">
+          <Link
+            to={`/projects/${project.id}`}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+          >
+            Case study <ArrowRight size={14} />
+          </Link>
           {project.liveUrl && (
             <a
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+              className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
             >
-              <ExternalLink size={15} /> Live Demo
+              <ExternalLink size={15} /> Live
             </a>
           )}
         </div>

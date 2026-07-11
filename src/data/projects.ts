@@ -8,6 +8,10 @@ export interface Project {
   liveUrl?: string;
   /** Optional screenshot in /public/projects. When omitted, a branded gradient placeholder is shown. */
   image?: string;
+  /** Case-study detail — powers /projects/:id. */
+  problem?: string;
+  role?: string;
+  features?: string[];
 }
 
 export const projects: Project[] = [
@@ -18,6 +22,15 @@ export const projects: Project[] = [
     techStack: ["React", "TypeScript", "Node.js", "Data Analytics"],
     category: "healthcare",
     liveUrl: "https://pathoguide-frontend.onrender.com/",
+    problem:
+      "Clinicians often prescribe antibiotics without visibility into local resistance patterns, accelerating antimicrobial resistance and worsening patient outcomes.",
+    role: "Full-stack design & development",
+    features: [
+      "Real-time local antibiotic resistance data from Mutare",
+      "Evidence-based prescribing recommendations",
+      "Antimicrobial stewardship dashboards",
+      "Analytics on emerging resistance trends",
+    ],
   },
   {
     id: "campusiq",
@@ -26,6 +39,15 @@ export const projects: Project[] = [
     techStack: ["React", "Spring Boot", "PostgreSQL", "JWT"],
     category: "management",
     liveUrl: "https://edunext-app-f.onrender.com",
+    problem:
+      "Schools juggle administration, teaching, and student engagement across disconnected tools that don't talk to each other.",
+    role: "Full-stack design & development",
+    features: [
+      "Unified administration & academic tracking",
+      "Dedicated teacher and student portals",
+      "Real-time performance analytics",
+      "JWT-secured, role-based access control",
+    ],
   },
   {
     id: "meal-pass",
@@ -34,6 +56,13 @@ export const projects: Project[] = [
     techStack: ["React", "Vite", "PWA", "Firebase"],
     category: "management",
     liveUrl: "https://meal-pass-frontend.onrender.com",
+    role: "Full-stack design & development",
+    features: [
+      "Individual meal tracking",
+      "Dietary goal management",
+      "QR-code meal redemption",
+      "Installable PWA with offline support",
+    ],
   },
   {
     id: "davison-motors",
@@ -42,6 +71,13 @@ export const projects: Project[] = [
     techStack: ["React", "Three.js", "Express", "MongoDB"],
     category: "management",
     liveUrl: "https://frontend-nz41.onrender.com",
+    role: "Full-stack design & development",
+    features: [
+      "Dealership inventory management",
+      "Interactive 3D vehicle showcase (Three.js)",
+      "Premium, high-end dealership UX",
+      "MongoDB-backed vehicle catalog",
+    ],
   },
   {
     id: "echostream",
@@ -49,6 +85,13 @@ export const projects: Project[] = [
     description: "Experience music like never before with EchoStream. A futuristic music management system featuring dynamic visualizers, glassmorphism UI, and personalized audio discovery.",
     techStack: ["React", "Web Audio API", "Framer Motion", "Supabase"],
     category: "entertainment",
+    role: "Full-stack design & development",
+    features: [
+      "Dynamic real-time audio visualizers",
+      "Glassmorphism interface",
+      "Personalized audio discovery",
+      "Web Audio API playback engine",
+    ],
   },
   {
     id: "mediflow",
@@ -56,6 +99,13 @@ export const projects: Project[] = [
     description: "Optimizing hospital operations with MediFlow. A high-tech management system for real-time patient tracking, staff coordination, and medical inventory control.",
     techStack: ["React", "Next.js", "TypeScript", "Redis"],
     category: "healthcare",
+    role: "Full-stack design & development",
+    features: [
+      "Real-time patient tracking",
+      "Staff coordination workflows",
+      "Medical inventory control",
+      "Redis-backed live updates",
+    ],
   },
   {
     id: "pharmtrack",
@@ -63,6 +113,13 @@ export const projects: Project[] = [
     description: "Real-time medicine availability at your fingertips. PharmTrack connects patients with pharmacies, offering stock management, reorder alerts, and seamless online ordering.",
     techStack: ["React Native", "Node.js", "Google Maps API", "Socket.io"],
     category: "healthcare",
+    role: "Full-stack & mobile development",
+    features: [
+      "Real-time pharmacy stock visibility",
+      "Automated reorder alerts",
+      "Seamless online ordering",
+      "Maps-based pharmacy locator",
+    ],
   },
   {
     id: "agriconnect",
@@ -70,6 +127,15 @@ export const projects: Project[] = [
     description: "Empowering local farmers by eliminating middle-men. AgriConnect allows farmers to list harvests and buyers to purchase directly, ensuring fair prices and fresh produce.",
     techStack: ["React", "Express", "Stripe", "PostGIS"],
     category: "marketplace",
+    problem:
+      "Middlemen erode farmer margins and inflate buyer prices, while fresh produce struggles to reach the right markets in time.",
+    role: "Full-stack design & development",
+    features: [
+      "Direct farmer-to-buyer marketplace",
+      "Fair-price harvest listings",
+      "Stripe-powered payments",
+      "PostGIS location-based matching",
+    ],
   },
   {
     id: "meditriage-ai",
@@ -77,6 +143,15 @@ export const projects: Project[] = [
     description: "Advanced multi-channel AI triage platform. Access expert medical guidance via smartphone, WhatsApp, or USSD code, ensuring timely care for everyone, everywhere.",
     techStack: ["Python", "OpenAI", "React", "Twilio"],
     category: "ai",
+    problem:
+      "Timely medical guidance is out of reach for people with limited connectivity or no smartphone access.",
+    role: "AI & full-stack development",
+    features: [
+      "Multi-channel triage: app, WhatsApp & USSD",
+      "AI-driven medical guidance",
+      "Twilio messaging integration",
+      "Designed for low-connectivity contexts",
+    ],
   },
   {
     id: "smartmart-pos",
@@ -85,6 +160,13 @@ export const projects: Project[] = [
     techStack: ["Vite", "React", "TypeScript", "shadcn-ui", "Tailwind CSS"],
     category: "retail",
     image: "/projects/smartmart.png",
+    role: "Full-stack design & development",
+    features: [
+      "Real-time inventory management",
+      "Barcode scanning",
+      "Sales analytics dashboards",
+      "Streamlined checkout workflows",
+    ],
   },
   {
     id: "tune-wise",
@@ -93,6 +175,13 @@ export const projects: Project[] = [
     techStack: ["React", "TypeScript", "Web Audio API", "Vite"],
     category: "entertainment",
     image: "/projects/tunewise.png",
+    role: "Full-stack design & development",
+    features: [
+      "Music theory & ear-training lessons",
+      "Interactive piano keyboard",
+      "Gamified progress tracking",
+      "Real-time audio feedback",
+    ],
   },
   {
     id: "aegis",
@@ -101,5 +190,14 @@ export const projects: Project[] = [
     techStack: ["React", "TypeScript", "Python", "OpenCV", "AI/ML"],
     category: "security",
     image: "/projects/aegis.png",
+    problem:
+      "Manual vehicle access control is slow, error-prone, and hard to audit across multiple entry points.",
+    role: "AI & full-stack development",
+    features: [
+      "License-plate recognition (OpenCV)",
+      "Role-based access control",
+      "Real-time entry alerts",
+      "IP-camera & mobile-phone support",
+    ],
   },
 ];
