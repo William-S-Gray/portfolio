@@ -1,88 +1,140 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Briefcase, Code2 } from "lucide-react";
+import { Link } from "react-router-dom";
+import {
+  GraduationCap,
+  Users,
+  Landmark,
+  Stethoscope,
+  ShieldCheck,
+  Sprout,
+  Pill,
+  UtensilsCrossed,
+  School,
+  Building2,
+  ArrowRight,
+} from "lucide-react";
 import Seo from "@/components/Seo";
 
 const techStack = [
-  "React", "TypeScript", "Node.js", "Java", "Spring Boot",
-  "MongoDB", "PostgreSQL", "Python", "TensorFlow", "Docker",
+  "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express",
+  "Python", "Flask", "FastAPI", "Java", "Spring Boot",
+  "PostgreSQL", "MySQL", "MongoDB", "Docker", "Cloud",
 ];
 
-const timeline = [
+const systems = [
+  { icon: Stethoscope, name: "PathoGuide AMR Assist", desc: "Clinical decision-support for antimicrobial resistance intelligence and better-informed treatment decisions." },
+  { icon: ShieldCheck, name: "ClaimGuard 360°", desc: "Intelligent health-insurance claims processing with improved visibility across the healthcare insurance ecosystem." },
+  { icon: Sprout, name: "AgriConnect", desc: "Digital agriculture platform linking farmers with market information, buyers, weather intelligence, and services." },
+  { icon: Pill, name: "PharmConnect Zim", desc: "Medicine discovery platform that helps people locate medicines across participating pharmacies." },
+  { icon: UtensilsCrossed, name: "Meal-Pass", desc: "Digital meal distribution and beneficiary management system built for high-volume operations." },
+  { icon: School, name: "Education Management Systems", desc: "Platforms that automate academic administration, attendance, finance, communication, and reporting." },
+  { icon: Building2, name: "Clinic & Hospital Systems", desc: "Digital platforms improving workflows across administration, clinical services, labs, pharmacies, and billing." },
+];
+
+const leadership = [
   {
-    year: "In progress",
-    title: "BSc (Honours) Computer Science",
-    place: "Africa University · Mutare, Zimbabwe",
-    type: "education" as const,
+    icon: Users,
+    role: "Google Developer Student Clubs Lead",
+    org: "Africa University · 2023/2024",
+    desc: "Created opportunities for students to learn, collaborate, explore technology, and participate in developer communities.",
   },
   {
-    year: "Ongoing",
-    title: "Freelance Full-Stack & Software Engineer",
-    place: "Self-employed · Remote",
-    type: "work" as const,
+    icon: Landmark,
+    role: "Deputy Speaker, Student Union Parliament",
+    org: "Africa University · 2024",
+    desc: "Contributed to student representation, governance, dialogue, and institutional engagement.",
   },
 ];
 
-const skills = [
-  { name: "Frontend Development", pct: 90 },
-  { name: "Backend & APIs", pct: 85 },
-  { name: "AI / Machine Learning", pct: 70 },
-  { name: "Database Design", pct: 80 },
-  { name: "DevOps & Cloud", pct: 65 },
+const approachQuestions = [
+  "Who is experiencing the problem?",
+  "How does the current process actually work?",
+  "Where are the inefficiencies?",
+  "What constraints exist in the real environment?",
+  "How can technology create measurable improvement?",
+];
+
+const interests = [
+  "Cloud & DevOps", "Docker & Containerisation", "Software Architecture",
+  "Artificial Intelligence", "API Design & Integration", "Cybersecurity",
+  "Data-Driven Applications", "Product Development", "User Experience", "Open Source",
 ];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
-  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.1, duration: 0.5 } }),
+  visible: (i: number) => ({ opacity: 1, y: 0, transition: { delay: i * 0.06, duration: 0.5 } }),
 };
-
-const typeIcon = {
-  education: GraduationCap,
-  work: Briefcase,
-} as const;
 
 const About = () => (
   <section className="px-4 py-16">
     <Seo
       title="About William S. Gray | Software Engineer & Computer Science Graduate"
-      description="William S. Gray is a software engineer and BSc Honours Computer Science student building full-stack, AI-powered, and cloud-native systems across healthcare, education, and retail."
+      description="William S. Gray — Software Engineer from Liberia, BSc Honours Computer Science graduate of Africa University, building full-stack, AI-powered, and cloud systems for real-world problems."
       path="/about"
     />
     <div className="container mx-auto max-w-5xl space-y-20">
-      {/* Heading + bio */}
+      {/* Intro */}
       <motion.div
         className="text-center"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
+        <span className="inline-block clay-sm px-4 py-1.5 text-xs font-semibold text-primary mb-6">
+          Building technology that solves real problems
+        </span>
         <h1 className="text-4xl sm:text-5xl font-extrabold mb-6">
           About <span className="text-gradient">William S. Gray</span>
         </h1>
-        <div className="max-w-2xl mx-auto space-y-4 text-muted-foreground text-left sm:text-center">
+        <div className="max-w-2xl mx-auto space-y-4 text-muted-foreground text-left">
           <p>
-            I'm <strong className="text-foreground">William S. Gray</strong>, a software engineer and
-            BSc (Honours) Computer Science student at Africa University in Mutare, Zimbabwe. I design and
-            build full-stack applications, AI-powered systems, and cloud-native infrastructure that turn
-            complex, real-world problems into reliable software.
+            Hello, I'm <strong className="text-foreground">William S. Gray</strong>, a Software Engineer and
+            Computer Science graduate with a passion for building practical, scalable technology that addresses
+            real-world challenges.
           </p>
           <p>
-            My work spans healthcare, education, retail, and security — from <strong className="text-foreground">PathoGuide</strong>,
-            a clinical decision-support system for antibiotic prescribing, to <strong className="text-foreground">CampusIQ</strong>,
-            an all-in-one school management platform, and <strong className="text-foreground">Aegis</strong>, an AI-powered
-            vehicle access system using license-plate recognition.
-          </p>
-          <p>
-            I care deeply about clean architecture, developer experience, and shipping systems that hold up in
-            production. Lately I've been going deeper on AI/ML integration, cloud deployment, and DevOps practices
-            that keep software fast, observable, and maintainable.
+            Originally from <strong className="text-foreground">Liberia</strong> and educated in{" "}
+            <strong className="text-foreground">Zimbabwe</strong>, my journey has shaped me into a globally
+            minded engineer who sees technology not simply as code, but as a tool for solving problems, improving
+            systems, and creating opportunities.
           </p>
         </div>
       </motion.div>
 
-      {/* Tech Stack */}
+      {/* Education highlight */}
+      <motion.article
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        custom={0}
+        className="clay p-6 sm:p-8 flex items-start gap-5 max-w-3xl mx-auto"
+      >
+        <span className="w-12 h-12 rounded-clay bg-accent/15 text-accent flex items-center justify-center flex-shrink-0">
+          <GraduationCap size={24} />
+        </span>
+        <div>
+          <h2 className="text-xl font-bold mb-1">BSc (Honours) in Computer Science</h2>
+          <p className="text-sm text-primary font-medium mb-2">Africa University · Mutare, Zimbabwe</p>
+          <p className="text-sm text-muted-foreground">
+            My experience extended far beyond the classroom — combining software development, technical
+            leadership, innovation, and community involvement while building systems across healthcare,
+            education, agriculture, digital services, and operational management.
+          </p>
+        </div>
+      </motion.article>
+
+      {/* What I Build */}
       <div>
-        <h2 className="text-2xl font-bold mb-6 text-center">Tech Stack</h2>
-        <ul className="flex flex-wrap justify-center gap-3 list-none p-0">
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <h2 className="text-2xl font-bold mb-3">What I Build</h2>
+          <p className="text-muted-foreground text-sm">
+            My work focuses on full-stack software engineering, AI-powered systems, cloud technologies, and
+            DevOps — across the entire lifecycle, from understanding a problem and designing the architecture to
+            deploying, monitoring, and continuously improving the product.
+          </p>
+        </div>
+        <ul className="flex flex-wrap justify-center gap-2.5 list-none p-0">
           {techStack.map((t, i) => (
             <motion.li
               key={t}
@@ -91,7 +143,7 @@ const About = () => (
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
-              className="clay-sm px-5 py-2.5 text-sm font-medium text-foreground clay-hover cursor-default"
+              className="clay-sm px-4 py-2 text-sm font-medium text-foreground clay-hover cursor-default"
             >
               {t}
             </motion.li>
@@ -99,77 +151,152 @@ const About = () => (
         </ul>
       </div>
 
-      {/* Skills */}
+      {/* Featured systems */}
       <div>
-        <h2 className="text-2xl font-bold mb-6 text-center">Skills</h2>
-        <div className="max-w-xl mx-auto space-y-5">
-          {skills.map((s, i) => (
-            <motion.div
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <h2 className="text-2xl font-bold mb-3">Systems I've Worked On</h2>
+          <p className="text-muted-foreground text-sm">
+            I'm especially drawn to building for environments where infrastructure, connectivity, affordability,
+            and operational realities require solutions to be designed differently.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-5">
+          {systems.map((s, i) => (
+            <motion.article
               key={s.name}
               custom={i}
               variants={fadeUp}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
+              className="clay p-6 flex items-start gap-4 clay-hover"
             >
-              <div className="flex justify-between mb-1.5 text-sm font-medium">
-                <span>{s.name}</span>
-                <span className="text-muted-foreground">{s.pct}%</span>
+              <span className="w-11 h-11 rounded-clay bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+                <s.icon size={20} />
+              </span>
+              <div>
+                <h3 className="font-semibold mb-1">{s.name}</h3>
+                <p className="text-sm text-muted-foreground">{s.desc}</p>
               </div>
-              <div
-                className="clay-inset h-3 overflow-hidden rounded-full"
-                role="progressbar"
-                aria-label={s.name}
-                aria-valuenow={s.pct}
-                aria-valuemin={0}
-                aria-valuemax={100}
-              >
-                <motion.div
-                  className="h-full rounded-full bg-primary"
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${s.pct}%` }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.8, delay: i * 0.1 }}
-                />
-              </div>
-            </motion.div>
+            </motion.article>
+          ))}
+        </div>
+        <div className="text-center mt-8">
+          <Link to="/projects" className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline">
+            See featured projects <ArrowRight size={15} />
+          </Link>
+        </div>
+      </div>
+
+      {/* Leadership */}
+      <div>
+        <div className="text-center max-w-2xl mx-auto mb-8">
+          <h2 className="text-2xl font-bold mb-3">Leadership &amp; Community</h2>
+          <p className="text-muted-foreground text-sm">
+            Leadership isn't simply about holding a position — it's about taking responsibility, listening,
+            communicating clearly, bringing teams together, and turning ideas into action.
+          </p>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-5 max-w-3xl mx-auto">
+          {leadership.map((l, i) => (
+            <motion.article
+              key={l.role}
+              custom={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="clay p-6 clay-hover"
+            >
+              <span className="w-11 h-11 rounded-clay bg-accent/15 text-accent flex items-center justify-center mb-4">
+                <l.icon size={20} />
+              </span>
+              <h3 className="font-semibold leading-tight mb-1">{l.role}</h3>
+              <p className="text-sm text-primary font-medium mb-2">{l.org}</p>
+              <p className="text-sm text-muted-foreground">{l.desc}</p>
+            </motion.article>
           ))}
         </div>
       </div>
 
-      {/* Timeline */}
-      <div>
-        <h2 className="text-2xl font-bold mb-8 text-center">Experience &amp; Education</h2>
-        <div className="max-w-xl mx-auto space-y-4">
-          {timeline.map((t, i) => {
-            const Icon = typeIcon[t.type] ?? Code2;
-            return (
-              <motion.article
-                key={i}
-                custom={i}
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                className="clay p-5 flex items-start gap-4"
-              >
-                <span
-                  className={`mt-0.5 w-9 h-9 rounded-clay flex items-center justify-center flex-shrink-0 ${
-                    t.type === "education" ? "bg-accent/15 text-accent" : "bg-primary/15 text-primary"
-                  }`}
-                >
-                  <Icon size={18} />
-                </span>
-                <div>
-                  <p className="text-xs text-muted-foreground font-medium">{t.year}</p>
-                  <h3 className="font-semibold">{t.title}</h3>
-                  <p className="text-sm text-muted-foreground">{t.place}</p>
-                </div>
-              </motion.article>
-            );
-          })}
+      {/* Approach */}
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-8">
+          <h2 className="text-2xl font-bold mb-3">How I Approach Technology</h2>
+          <p className="text-muted-foreground text-sm">
+            I believe the best technology begins with understanding the problem before choosing the tools. Before
+            I write code, I ask:
+          </p>
         </div>
+        <ul className="space-y-3 list-none p-0">
+          {approachQuestions.map((q, i) => (
+            <motion.li
+              key={q}
+              custom={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="clay-sm px-5 py-4 flex items-center gap-3 text-sm font-medium"
+            >
+              <span className="text-primary font-bold">{String(i + 1).padStart(2, "0")}</span>
+              {q}
+            </motion.li>
+          ))}
+        </ul>
+        <p className="text-sm text-muted-foreground text-center mt-6">
+          I'm particularly drawn to challenges in healthcare, education, agriculture, public services, and digital
+          transformation — especially within African and emerging-market contexts.
+        </p>
       </div>
+
+      {/* Interests */}
+      <div>
+        <h2 className="text-2xl font-bold mb-6 text-center">Beyond Writing Code</h2>
+        <ul className="flex flex-wrap justify-center gap-2.5 list-none p-0 max-w-3xl mx-auto">
+          {interests.map((t, i) => (
+            <motion.li
+              key={t}
+              custom={i}
+              variants={fadeUp}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="clay-sm px-4 py-2 text-sm font-medium text-muted-foreground clay-hover cursor-default"
+            >
+              {t}
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Looking forward / CTA */}
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        custom={0}
+        className="clay-lg p-8 sm:p-12 text-center max-w-3xl mx-auto"
+      >
+        <h2 className="text-2xl font-bold mb-4">Looking Forward</h2>
+        <p className="text-muted-foreground text-sm mb-2">
+          I'm focused on growing as a Software Engineer and contributing to teams building meaningful technology
+          at scale — open to software engineering, full-stack, backend, frontend, cloud &amp; DevOps, AI-powered
+          systems, graduate programmes, and international technology organisations. Remote, hybrid, or on-site
+          globally, including relocation.
+        </p>
+        <p className="text-foreground font-semibold mt-6 mb-8">
+          For me, technology is not only about what can be built. It is about what becomes possible because we
+          built it.
+        </p>
+        <Link
+          to="/contact"
+          className="inline-flex items-center gap-2 px-6 py-3 rounded-clay bg-primary text-primary-foreground font-semibold clay-hover transition-all text-sm"
+        >
+          Let's build something <ArrowRight size={16} />
+        </Link>
+      </motion.div>
     </div>
   </section>
 );
