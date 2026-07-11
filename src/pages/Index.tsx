@@ -53,8 +53,8 @@ const Index = () => (
               Hire Me
             </Link>
             <a
-              href="/William-Gray-CV.pdf"
-              download
+              href="/William%20S.%20Gray%20Professional%20CV.pdf"
+              download="William-S-Gray-CV.pdf"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-clay clay-sm clay-hover text-sm font-semibold text-muted-foreground hover:text-primary transition-all"
             >
               <Download size={16} /> Download CV
