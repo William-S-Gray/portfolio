@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Globe, Server, Brain, Database, Cloud, Code2 } from "lucide-react";
 import { Link } from "react-router-dom";
+import Seo from "@/components/Seo";
 
 const services = [
   {
@@ -37,6 +38,11 @@ const services = [
 
 const Services = () => (
   <section className="px-4 py-16">
+    <Seo
+      title="Services — Software Engineering, AI & Full-Stack Development | William S. Gray"
+      description="Software engineering services by William S. Gray: full-stack web apps, backend APIs, AI/ML features, database design, and DevOps — from concept to deployment."
+      path="/services"
+    />
     <div className="container mx-auto max-w-6xl">
       <motion.div
         className="text-center mb-14"

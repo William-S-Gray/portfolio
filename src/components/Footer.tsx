@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Github, Linkedin, Facebook, Instagram } from "lucide-react";
 
 const socials = [
@@ -11,9 +12,9 @@ const Footer = () => (
   <footer className="py-12 px-4">
     <div className="container mx-auto max-w-6xl">
       <div className="clay p-8 flex flex-col md:flex-row items-center justify-between gap-6">
-        <a href="#" className="font-heading text-lg font-bold text-gradient">
+        <Link to="/" className="font-heading text-lg font-bold text-gradient">
           William.
-        </a>
+        </Link>
         <div className="flex items-center gap-4">
           {socials.map((s) => (
             <a
@@ -29,7 +30,7 @@ const Footer = () => (
           ))}
         </div>
         <p className="text-sm text-muted-foreground">
-          © {new Date().getFullYear()} William. All rights reserved.
+          © {new Date().getFullYear()} William S. Gray. All rights reserved.
         </p>
       </div>
     </div>

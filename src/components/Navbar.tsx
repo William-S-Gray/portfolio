@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const links = [
   { to: "/", label: "Home" },
@@ -16,10 +17,10 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
-      <div className="container mx-auto max-w-6xl">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 py-4">
+      <nav aria-label="Primary" className="container mx-auto max-w-6xl">
         <div className="clay-sm flex items-center justify-between px-6 py-3">
-          <Link to="/" className="font-heading text-xl font-extrabold text-gradient">
+          <Link to="/" aria-label="William S. Gray — home" className="font-heading text-xl font-extrabold text-gradient">
             William.
           </Link>
 
@@ -48,21 +49,27 @@ const Navbar = () => {
             ))}
           </ul>
 
-          <Link
-            to="/contact"
-            className="hidden md:inline-flex items-center px-5 py-2.5 rounded-clay bg-primary text-primary-foreground text-sm font-semibold clay-hover transition-all"
-          >
-            Hire Me
-          </Link>
+          <div className="hidden md:flex items-center gap-2">
+            <ThemeToggle />
+            <Link
+              to="/contact"
+              className="inline-flex items-center px-5 py-2.5 rounded-clay bg-primary text-primary-foreground text-sm font-semibold clay-hover transition-all"
+            >
+              Hire Me
+            </Link>
+          </div>
 
-          {/* Mobile toggle */}
-          <button
-            onClick={() => setOpen(!open)}
-            className="md:hidden p-2 rounded-clay text-foreground"
-            aria-label="Toggle menu"
-          >
-            {open ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {/* Mobile controls */}
+          <div className="flex items-center gap-1 md:hidden">
+            <ThemeToggle />
+            <button
+              onClick={() => setOpen(!open)}
+              className="p-2 rounded-clay text-foreground"
+              aria-label="Toggle menu"
+            >
+              {open ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile menu */}
@@ -94,8 +101,8 @@ const Navbar = () => {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 };
 

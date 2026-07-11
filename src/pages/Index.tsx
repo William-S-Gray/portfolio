@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowDown, Download, Github, Linkedin, Facebook, Instagram } from "lucide-react";
 import { Link } from "react-router-dom";
-import profileImg from "@/assets/profile-placeholder.jpg";
+import Seo from "@/components/Seo";
 
 const socials = [
   { icon: Github, href: "https://github.com/William-W-Gray", label: "GitHub" },
@@ -12,6 +12,11 @@ const socials = [
 
 const Index = () => (
   <section className="px-4 min-h-[calc(100vh-6rem)] flex items-center">
+    <Seo
+      title="William S. Gray | Software Engineer & AI Full-Stack Systems Builder"
+      description="Software engineer William S. Gray builds scalable full-stack, AI-powered, and cloud-native systems — from clinical decision tools to school management platforms."
+      path="/"
+    />
     <div className="container mx-auto max-w-6xl">
       <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-20">
         {/* Left */}
@@ -25,13 +30,13 @@ const Index = () => (
             Available for opportunities
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight mb-4">
-            Hi, I'm <span className="text-gradient">William</span>
+            Hi, I'm <span className="text-gradient">William S. Gray</span>
           </h1>
           <p className="text-lg text-muted-foreground mb-2 font-medium">
-            Software Developer · AI Enthusiast · Devops Engineer
+            Software Engineer · AI &amp; Full-Stack Systems Builder · DevOps
           </p>
           <p className="text-muted-foreground max-w-lg mx-auto lg:mx-0 mb-8">
-            I craft modern web experiences, build scalable backend systems, and explore the frontiers of artificial intelligence.
+            I design and ship scalable full-stack applications, AI-powered systems, and cloud-native infrastructure — turning complex problems into reliable, elegant software.
           </p>
 
           <div className="flex flex-wrap items-center gap-3 justify-center lg:justify-start mb-10">
@@ -48,9 +53,11 @@ const Index = () => (
               Hire Me
             </Link>
             <a
-              href="#"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-clay clay-sm clay-hover text-sm font-semibold text-muted-foreground transition-all"
+              href="/William-Gray-CV.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-clay clay-sm clay-hover text-sm font-semibold text-muted-foreground hover:text-primary transition-all"
             >
+              <Download size={16} /> Download CV
             </a>
           </div>
 
@@ -80,8 +87,10 @@ const Index = () => (
           <div className="clay-lg p-3 animate-float">
             <img
               src="/Will.png"
-              alt="This is — image of William Gray"
+              alt="Portrait of William S. Gray, software engineer and full-stack systems builder"
               className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 object-cover rounded-clay-lg"
+              width={433}
+              height={577}
               loading="eager"
             />
           </div>

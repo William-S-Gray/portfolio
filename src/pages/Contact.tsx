@@ -3,6 +3,8 @@ import { motion } from "framer-motion";
 import { Send, MapPin, Mail, Github, Linkedin } from "lucide-react";
 import { z } from "zod";
 import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
+import Seo from "@/components/Seo";
 
 const contactSchema = z.object({
   name: z.string().trim().min(1, "Name is required").max(100),
@@ -77,6 +79,7 @@ const Contact = () => {
       );
 
       setSubmitted(true);
+      toast.success("Message sent — I'll get back to you within 24 hours.");
 
       setForm({
         name: "",
@@ -87,7 +90,7 @@ const Contact = () => {
 
     } catch (error) {
       console.error("Email failed:", error);
-      alert("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again, or email me directly.");
     } finally {
       setLoading(false);
     }
@@ -95,6 +98,11 @@ const Contact = () => {
 
   return (
     <section className="px-4 py-16">
+      <Seo
+        title="Contact William S. Gray | Software Engineer"
+        description="Get in touch with William S. Gray for software engineering projects, full-stack development, AI solutions, or collaboration. Available worldwide."
+        path="/contact"
+      />
       <div className="container mx-auto max-w-4xl">
         <motion.div
           className="text-center mb-14"
@@ -138,14 +146,20 @@ const Contact = () => {
             <div className="clay p-5 flex items-center gap-4">
               <a
                 href="https://github.com/William-W-Gray"
-                className="hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+                className="hover:text-primary transition-colors"
               >
                 <Github size={20} />
               </a>
 
               <a
                 href="https://www.linkedin.com/in/william-wiltino-gray-577254253/"
-                className="hover:text-primary"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+                className="hover:text-primary transition-colors"
               >
                 <Linkedin size={20} />
               </a>
@@ -174,47 +188,60 @@ const Contact = () => {
               >
                 <input
                   name="name"
+                  type="text"
+                  autoComplete="name"
+                  aria-label="Your name"
+                  aria-invalid={!!errors.name}
                   placeholder="Your Name"
                   value={form.name}
                   onChange={handleChange}
-                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                  className="w-full clay-inset px-4 py-3 rounded-clay bg-transparent outline-none focus:ring-2 focus:ring-ring/50"
                 />
                 {errors.name && (
-                  <p className="text-xs text-red-500">{errors.name}</p>
+                  <p className="text-xs text-destructive">{errors.name}</p>
                 )}
 
                 <input
                   name="email"
+                  type="email"
+                  autoComplete="email"
+                  aria-label="Your email address"
+                  aria-invalid={!!errors.email}
                   placeholder="Your Email"
                   value={form.email}
                   onChange={handleChange}
-                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                  className="w-full clay-inset px-4 py-3 rounded-clay bg-transparent outline-none focus:ring-2 focus:ring-ring/50"
                 />
                 {errors.email && (
-                  <p className="text-xs text-red-500">{errors.email}</p>
+                  <p className="text-xs text-destructive">{errors.email}</p>
                 )}
 
                 <input
                   name="subject"
+                  type="text"
+                  aria-label="Subject"
+                  aria-invalid={!!errors.subject}
                   placeholder="Subject"
                   value={form.subject}
                   onChange={handleChange}
-                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                  className="w-full clay-inset px-4 py-3 rounded-clay bg-transparent outline-none focus:ring-2 focus:ring-ring/50"
                 />
                 {errors.subject && (
-                  <p className="text-xs text-red-500">{errors.subject}</p>
+                  <p className="text-xs text-destructive">{errors.subject}</p>
                 )}
 
                 <textarea
                   name="message"
                   rows={5}
+                  aria-label="Your message"
+                  aria-invalid={!!errors.message}
                   placeholder="Your Message"
                   value={form.message}
                   onChange={handleChange}
-                  className="w-full clay-inset px-4 py-3 rounded-clay"
+                  className="w-full clay-inset px-4 py-3 rounded-clay bg-transparent outline-none focus:ring-2 focus:ring-ring/50 resize-none"
                 />
                 {errors.message && (
-                  <p className="text-xs text-red-500">{errors.message}</p>
+                  <p className="text-xs text-destructive">{errors.message}</p>
                 )}
 
                 <button

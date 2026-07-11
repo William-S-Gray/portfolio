@@ -13,6 +13,32 @@ import {
   Grid2X2,
 } from "lucide-react";
 import { projects, type Project } from "@/data/projects";
+import Seo from "@/components/Seo";
+
+const SITE_URL = "https://william-gray.netlify.app";
+
+// ItemList structured data so search engines can associate each system with William S. Gray.
+const projectsJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Software projects by William S. Gray",
+  itemListElement: projects.map((p, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "CreativeWork",
+      name: p.title,
+      description: p.description,
+      keywords: p.techStack.join(", "),
+      ...(p.liveUrl ? { url: p.liveUrl } : {}),
+      author: {
+        "@type": "Person",
+        name: "William S. Gray",
+        url: `${SITE_URL}/`,
+      },
+    },
+  })),
+};
 
 const categories = [
   "all",
@@ -67,6 +93,15 @@ const Projects = () => {
 
   return (
     <section className="px-4 py-16">
+      <Seo
+        title="Projects by William S. Gray | Full-Stack & AI Systems"
+        description="Explore software projects built by William S. Gray — PathoGuide, CampusIQ, Aegis, and more full-stack, AI-powered, and cloud systems across healthcare, education, and retail."
+        path="/projects"
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(projectsJsonLd) }}
+      />
       <div className="container mx-auto max-w-6xl">
         <motion.div
           className="text-center mb-10"
@@ -120,7 +155,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
   const cardIcon = categoryCardIcons[project.category];
 
   return (
-    <motion.div
+    <motion.article
       layout
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -128,17 +163,30 @@ const ProjectCard = ({ project }: { project: Project }) => {
       transition={{ duration: 0.35 }}
       className="clay overflow-hidden clay-hover group"
     >
-      <div className="relative overflow-hidden">
-        <img
-          src={project.image}
-          alt={project.title}
-          className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
-          loading="lazy"
-        />
-        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
-        {/* Category icon badge */}
-        {cardIcon && (
+      <div className="relative overflow-hidden h-48">
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={`${project.title} preview`}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          /* Branded gradient placeholder when no screenshot is available */
           <div
+            className={`w-full h-full bg-gradient-to-br ${iconColorClass} flex flex-col items-center justify-center gap-3 text-white transition-transform duration-500 group-hover:scale-105`}
+          >
+            <div className="opacity-90 [&>svg]:w-10 [&>svg]:h-10">{cardIcon}</div>
+            <span className="font-heading font-bold text-lg tracking-tight px-4 text-center drop-shadow-sm">
+              {project.title}
+            </span>
+          </div>
+        )}
+        <div className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors" />
+        {/* Category icon badge — only over real screenshots */}
+        {cardIcon && project.image && (
+          <div
+            aria-hidden="true"
             className={`absolute top-3 right-3 bg-gradient-to-br ${iconColorClass} text-white p-2 rounded-xl shadow-lg backdrop-blur-sm`}
           >
             {cardIcon}
@@ -185,7 +233,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
           )}
         </div>
       </div>
-    </motion.div>
+    </motion.article>
   );
 };
 
