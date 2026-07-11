@@ -145,7 +145,7 @@ const Contact = () => {
 
             <div className="clay p-5 flex items-center gap-4">
               <a
-                href="https://github.com/William-W-Gray"
+                href="https://github.com/William-S-Gray"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { Github, Linkedin, Facebook, Instagram } from "lucide-react";
 
 const socials = [
-  { icon: Github, href: "https://github.com/William-W-Gray", label: "GitHub" },
+  { icon: Github, href: "https://github.com/William-S-Gray", label: "GitHub" },
   { icon: Linkedin, href: "https://www.linkedin.com/in/william-wiltino-gray-577254253/", label: "LinkedIn" },
   { icon: Facebook, href: "https://www.facebook.com/william.wiltino.gray", label: "Facebook" },
   { icon: Instagram, href: "https://www.instagram.com/william.wiltino.gray", label: "Instagram" },
