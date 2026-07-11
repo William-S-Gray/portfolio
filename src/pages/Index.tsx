@@ -92,6 +92,8 @@ const Index = () => (
               width={433}
               height={577}
               loading="eager"
+              fetchPriority="high"
+              decoding="async"
             />
           </div>
         </motion.div>
