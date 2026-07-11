@@ -86,7 +86,7 @@ const Index = () => (
         >
           <div className="clay-lg p-3 animate-float">
             <img
-              src="/Will.png"
+              src="/Will.webp"
               alt="Portrait of William S. Gray, software engineer and full-stack systems builder"
               className="w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 object-cover rounded-clay-lg"
               width={433}
