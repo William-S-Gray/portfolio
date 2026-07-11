@@ -2,6 +2,7 @@ import { ReactNode } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import CommandPalette from "./CommandPalette";
+import AskAI from "./AskAI";
 
 const Layout = ({ children }: { children: ReactNode }) => (
   <div className="min-h-screen flex flex-col">
@@ -15,6 +16,7 @@ const Layout = ({ children }: { children: ReactNode }) => (
     <main id="main" className="flex-1 pt-24">{children}</main>
     <Footer />
     <CommandPalette />
+    <AskAI />
   </div>
 );
 
