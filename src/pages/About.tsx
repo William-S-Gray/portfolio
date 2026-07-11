@@ -11,9 +11,18 @@ import {
   UtensilsCrossed,
   School,
   Building2,
+  Rocket,
+  ArrowUpRight,
   ArrowRight,
 } from "lucide-react";
 import Seo from "@/components/Seo";
+
+const willNovaServices = [
+  "Web Development", "Mobile Apps", "Custom Management Systems", "Backend APIs",
+  "AI-Powered Solutions", "Database Architecture", "UI/UX Design", "Cloud & DevOps",
+];
+
+const founderHats = ["Founder", "Product Builder", "System Architect", "Project Manager", "Client Partner"];
 
 const techStack = [
   "JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Express",
@@ -218,6 +227,80 @@ const About = () => (
           ))}
         </div>
       </div>
+
+      {/* Entrepreneurship — WillNova Technologies */}
+      <motion.div
+        variants={fadeUp}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        custom={0}
+        className="clay-lg p-8 sm:p-12 max-w-4xl mx-auto"
+      >
+        <div className="flex items-center gap-4 mb-6">
+          <span className="w-12 h-12 rounded-clay bg-primary/10 text-primary flex items-center justify-center flex-shrink-0">
+            <Rocket size={24} />
+          </span>
+          <div>
+            <p className="text-xs font-semibold text-primary uppercase tracking-wide">Entrepreneurship</p>
+            <h2 className="text-2xl font-bold leading-tight">Founder, WillNova Technologies</h2>
+          </div>
+        </div>
+
+        <div className="space-y-4 text-muted-foreground text-sm">
+          <p>
+            Beyond my work as a software engineer, I'm the founder of{" "}
+            <strong className="text-foreground">WillNova Technologies</strong>, a technology startup focused on
+            transforming ideas and operational challenges into scalable digital products — helping businesses,
+            institutions, startups, and individuals modernise their operations and bring ambitious ideas to life.
+          </p>
+          <p>
+            Building WillNova has expanded my experience beyond writing code, challenging me to think about
+            technology as a founder, product builder, system architect, project manager, and client partner —
+            understanding business problems, defining requirements, designing solutions, managing delivery, and
+            supporting products after launch.
+          </p>
+        </div>
+
+        <div className="my-6">
+          <p className="text-xs font-semibold text-foreground mb-3">What we build</p>
+          <ul className="flex flex-wrap gap-2 list-none p-0">
+            {willNovaServices.map((s) => (
+              <li key={s} className="clay-sm px-3.5 py-1.5 text-xs font-medium text-muted-foreground cursor-default">
+                {s}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="mb-6">
+          <p className="text-xs font-semibold text-foreground mb-3">Hats I wear</p>
+          <ul className="flex flex-wrap gap-2 list-none p-0">
+            {founderHats.map((h) => (
+              <li key={h} className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium">
+                {h}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <p className="text-sm text-muted-foreground">
+          My ambition is to grow WillNova into a globally competitive African technology company that builds
+          world-class digital products while contributing to the growth of Africa's technology ecosystem.
+        </p>
+
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4 mt-8 pt-6 border-t border-border">
+          <span className="font-heading font-bold text-gradient">Innovate. Build. Elevate.</span>
+          <a
+            href="https://willnova.vercel.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-clay bg-primary text-primary-foreground text-sm font-semibold clay-hover transition-all sm:ml-auto"
+          >
+            Visit WillNova <ArrowUpRight size={15} />
+          </a>
+        </div>
+      </motion.div>
 
       {/* Approach */}
       <div className="max-w-3xl mx-auto">
