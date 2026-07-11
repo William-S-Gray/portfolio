@@ -159,7 +159,7 @@ export const projects: Project[] = [
     description: "A comprehensive Point-of-Sale system built to automate supermarket daily operations. Features real-time inventory management, barcode scanning, sales analytics, and seamless checkout workflows for modern retail businesses.",
     techStack: ["Vite", "React", "TypeScript", "shadcn-ui", "Tailwind CSS"],
     category: "retail",
-    image: "/projects/smartmart.png",
+    image: "/projects/smartmart.webp",
     role: "Full-stack design & development",
     features: [
       "Real-time inventory management",
@@ -174,7 +174,7 @@ export const projects: Project[] = [
     description: "An interactive music education platform designed to teach students music theory, ear training, and instrument practice. Features piano keyboards, progress tracking, gamified lessons, and real-time audio feedback.",
     techStack: ["React", "TypeScript", "Web Audio API", "Vite"],
     category: "entertainment",
-    image: "/projects/tunewise.png",
+    image: "/projects/tunewise.webp",
     role: "Full-stack design & development",
     features: [
       "Music theory & ear-training lessons",
@@ -189,7 +189,7 @@ export const projects: Project[] = [
     description: "An AI-powered intelligent vehicle access management system combining license plate recognition with role-based access control and real-time alerts. Supports IP cameras and mobile phones with a modern neumorphic UI.",
     techStack: ["React", "TypeScript", "Python", "OpenCV", "AI/ML"],
     category: "security",
-    image: "/projects/aegis.png",
+    image: "/projects/aegis.webp",
     problem:
       "Manual vehicle access control is slow, error-prone, and hard to audit across multiple entry points.",
     role: "AI & full-stack development",
