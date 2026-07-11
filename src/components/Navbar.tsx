@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Search } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+
+const openPalette = () => window.dispatchEvent(new Event("open-command-palette"));
 
 const links = [
   { to: "/", label: "Home" },
@@ -52,6 +54,15 @@ const Navbar = () => {
           </ul>
 
           <div className="hidden lg:flex items-center gap-2">
+            <button
+              onClick={openPalette}
+              aria-label="Open command palette"
+              title="Search (⌘K)"
+              className="inline-flex items-center gap-2 px-3 py-2 rounded-clay clay-sm text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Search size={16} />
+              <kbd className="text-[10px] font-medium border border-border rounded px-1.5 py-0.5">⌘K</kbd>
+            </button>
             <ThemeToggle />
             <Link
               to="/contact"
@@ -63,6 +74,13 @@ const Navbar = () => {
 
           {/* Mobile controls */}
           <div className="flex items-center gap-1 lg:hidden">
+            <button
+              onClick={openPalette}
+              aria-label="Open command palette"
+              className="p-2 rounded-clay text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Search size={20} />
+            </button>
             <ThemeToggle />
             <button
               onClick={() => setOpen(!open)}
