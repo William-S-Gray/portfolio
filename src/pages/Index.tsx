@@ -3,6 +3,7 @@ import { ArrowDown, Download, Github, Linkedin, Facebook, Instagram } from "luci
 import { Link } from "react-router-dom";
 import Seo from "@/components/Seo";
 import ImpactStats from "@/components/ImpactStats";
+import GitHubActivity from "@/components/GitHubActivity";
 
 const socials = [
   { icon: Github, href: "https://github.com/William-S-Gray", label: "GitHub" },
@@ -112,6 +113,7 @@ const Index = () => (
     </div>
     </section>
     <ImpactStats />
+    <GitHubActivity />
   </>
 );
 
