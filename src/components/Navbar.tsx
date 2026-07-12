@@ -56,7 +56,7 @@ const Navbar = () => {
           <div className="hidden lg:flex items-center gap-2">
             <button
               onClick={openPalette}
-              aria-label="Open command palette"
+              aria-label="Open command palette, ⌘K"
               title="Search (⌘K)"
               className="inline-flex items-center gap-2 px-3 py-2 rounded-clay clay-sm text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
