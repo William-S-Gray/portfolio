@@ -7,6 +7,9 @@ import Seo from "@/components/Seo";
 const formatDate = (iso: string) =>
   new Date(iso).toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
 
+// Newest first, regardless of array order.
+const sortedPosts = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+
 const Blog = () => (
   <section className="px-4 py-16">
     <Seo
@@ -30,7 +33,7 @@ const Blog = () => (
       </motion.div>
 
       <div className="space-y-5">
-        {posts.map((post, i) => (
+        {sortedPosts.map((post, i) => (
           <motion.article
             key={post.slug}
             initial={{ opacity: 0, y: 20 }}
